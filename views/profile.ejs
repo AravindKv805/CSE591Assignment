@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <title>CSE 591 Adaptive Web</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body {
+            word-wrap:break-word;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Log in details</h3>
+                    <p>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                    </p>
+
+                    <h2>Login History</h2>
+                        <ul class="list-group">
+					    <ul class="list-group">
+					    <% for(var i=0; i < user.loginHistory.length; i++) { %>
+					    <li class="list-group-item"><%= user.loginHistory[i] %></li>
+					    <% } %>
+					</ul>
+
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+        <a href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15">Stackoverflow</a>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
