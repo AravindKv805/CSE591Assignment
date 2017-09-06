@@ -8,6 +8,9 @@ var userSchema = mongoose.Schema({
     },
     loginHistory: {
         type: Array
+    },
+    logoutHistory: {
+    	type: Array
     }
 });
 

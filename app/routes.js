@@ -35,20 +35,27 @@ module.exports = function(app, passport) {
 
     app.post('/behavior', function(req, res) {
         console.log(req.body);
-        if (req.cookies.useremail) {
-            let type = req.body.type;
-            let dateTime = req.body.dateTime;
-            let data = req.body.data;
-            behaviorService.addLog(email, type, dateTime, data);
-        } else {
-            res.redirect('/logout');
-        }
-        
+        let type = req.body.type;
+        let dateTime = req.body.dateTime;
+        let data = req.body.data;
+        let email = req.body.useremail;
+        let link = req.body.link;
+
+        behaviorService.addLog(email, type, dateTime, data, link);
+
+        res.send(200);
     });
 
     app.get('/logout', function(req, res) {
         req.logout();
         res.clearCookie('connect.useremail');
+        let user = req.user;
+        user.logoutHistory.push(Date());
+        user.save(function(err) {
+            if (err)
+                throw err;
+            return done(null, user);
+        });
         res.redirect('/');
     });
 
