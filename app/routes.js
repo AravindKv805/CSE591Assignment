@@ -27,35 +27,33 @@ module.exports = function(app, passport) {
     }));
 
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.cookie('connect.useremail', req.user.local.email, { httpOnly: true });
+        res.cookie('connect.username', req.user.local.username, { httpOnly: true });
         res.render('profile.ejs', {
             user: req.user
         });
     });
 
     app.post('/behavior', function(req, res) {
-        console.log(req.body);
         let type = req.body.type;
         let dateTime = req.body.dateTime;
         let data = req.body.data;
-        let email = req.body.useremail;
+        let username = req.body.username;
         let link = req.body.link;
 
-        behaviorService.addLog(email, type, dateTime, data, link);
+        behaviorService.addLog(username, type, dateTime, data, link);
 
         res.send(200);
     });
 
     app.get('/logout', function(req, res) {
-        req.logout();
-        res.clearCookie('connect.useremail');
         let user = req.user;
         user.logoutHistory.push(Date());
         user.save(function(err) {
             if (err)
                 throw err;
-            return done(null, user);
         });
+        req.logout();
+        res.clearCookie('connect.useremail');
         res.redirect('/');
     });
 

@@ -24,22 +24,43 @@
             <div class="well">
                 <h3><span class="fa fa-user"></span> Log in details</h3>
                     <p>
-                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>User</strong>: <%= user.local.username %><br>
                     </p>
 
                     <h2>Login History</h2>
                         <ul class="list-group">
-					    <ul class="list-group">
-					    <% for(var i=0; i < user.loginHistory.length; i++) { %>
-					    <li class="list-group-item"><%= user.loginHistory[i] %></li>
-					    <% } %>
-					</ul>
+                        <% for(var i=0; i < user.loginHistory.length; i++) { %>
+                        <li class="list-group-item"><%= user.loginHistory[i] %></li>
+                        <% } %>
+                    </ul>
+
+                    <h2>Logout History</h2>
+                        <ul class="list-group">
+                        <% for(var i=0; i < user.logoutHistory.length; i++) { %>
+                        <li class="list-group-item"><%= user.logoutHistory[i] %></li>
+                        <% } %>
+                    </ul>
 
             </div>
         </div>
 
         <div class="col-sm-6">
-        <a href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15">Stackoverflow</a>
+        <a href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15" style="font-size: 40px" target="_blank">Stackoverflow >></a>
+
+        <div class="well">
+        <h3></span> Why log these actions?</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Click on question - To track how many questions the user has opened to see if s/he is active in the topics that s/he is interested.</li>
+            <li class="list-group-item">Click on Hot Network question - To track if the user navigates to other topics which are commonly viewed by others.</li>
+            <li class="list-group-item">Subscribe to tags - To capture tags which interest the user.</li>
+            <li class="list-group-item">Upvote/Downvote questions - To analyze the sentiment of the user's views.</li>
+            <li class="list-group-item">Upvote/Downvote answers - To analyze the user's acknowledgement of the right/wrong answers.</li>
+            <li class="list-group-item">Copy answers - To track if the user sees the answers as something s/he can reuse.</li>
+            <li class="list-group-item">Submit new answers - To analyze if the user is active in sharing his ideas to relevant questions.</li>
+            <li class="list-group-item">Submit new comments - To analyze sentiment of the user towards answers in a post.</li>
+            <li class="list-group-item">Go to page number - To track user's navigation to see if s/he is digging deep into a particular topic or tag.</li>
+        </ul>
+        </div>
         </div>
 
     </div>
