@@ -1,5 +1,5 @@
 {
-    "name": "assignment-1",
+    "name": "pkondudu-cse591-aw-assignment-1",
     "main": "server.js",
     "dependencies": {
         "express": "~4.0.0",
