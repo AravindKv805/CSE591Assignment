@@ -48,7 +48,9 @@ module.exports = function(app, passport) {
     app.get('/logout', function(req, res) {
         let user = req.user;
 
-        userService.saveUser(user);
+        if (user) {
+            userService.saveUser(user);
+        }
         req.logout();
         res.clearCookie('connect.useremail');
         res.redirect('/');
