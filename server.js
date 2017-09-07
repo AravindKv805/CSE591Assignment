@@ -13,13 +13,20 @@ var session = require('express-session');
 var dbConfig = require('./config/database.js');
 
 mongoose.connect(dbConfig.url);
+var db = mongoose.connection;
+db.on('error', function callback(err) {
+    console.log(err);
+});
+db.once('open', function callback() {
+    console.log("h");
+});
 
 require('./config/passport')(passport);
 
 app.use(morgan('dev'));
-app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 
