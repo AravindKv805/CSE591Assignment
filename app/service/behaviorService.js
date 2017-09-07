@@ -1,5 +1,6 @@
 let Behavior = require('../models/behavior');
 let User = require('../models/user');
+let moment = require('moment');
 
 module.exports = {
     addLog: function(username, type, dateTime, data, link) {
@@ -16,6 +17,19 @@ module.exports = {
                     throw err;
                 return;
             });
+        });
+    },
+    getLogs: function(user, res) {
+        Behavior.find({ 'userId': user._id }, function(err, behaviors) {
+            if (err)
+                throw err;
+            else {
+                res.render('behaviors.ejs', {
+                    username: user.local.username,
+                    behaviors: behaviors,
+                    moment: moment
+                });
+            }
         });
     }
 }

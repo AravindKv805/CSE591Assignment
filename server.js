@@ -4,7 +4,6 @@ let port = process.env.PORT || 8082;
 let mongoose = require('mongoose');
 let passport = require('passport');
 let flash = require('connect-flash');
-
 let morgan = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');

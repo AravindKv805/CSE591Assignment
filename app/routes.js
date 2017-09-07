@@ -45,6 +45,10 @@ module.exports = function(app, passport) {
         res.send(200);
     });
 
+    app.get('/behaviors', function(req, res) {
+        behaviorService.getLogs(req.user, res);
+    });
+
     app.get('/logout', function(req, res) {
         let user = req.user;
 

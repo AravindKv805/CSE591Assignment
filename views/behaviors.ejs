@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title>CSE 591 Adaptive Web</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body {
+            word-wrap:break-word;
+        }
+        table {
+            table-layout: fixed;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Event logs</h1>
+        <a href="/" class="btn btn-default btn-sm">Home</a>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <div class="well">
+                <h3></span> Event Interactions Logs</h3>
+                <p>
+                    <strong>User</strong>: <%= username %><br>
+                </p>
+
+                <h2>Events History</h2>
+
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Link</th>
+                            <th>Data</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < behaviors.length; i++) { %>
+                        <tr>
+                            <td class="col-md-2"><%= behaviors[i].type %></td>
+                            <td class="col-md-2"><%= behaviors[i].link %></td>
+                            <td class="col-md-4"><%= behaviors[i].data %></td>
+                            <td class="col-md-2"><%= moment(behaviors[i].dateTime).format('MM-DD-YYYY HH:MM') %></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
