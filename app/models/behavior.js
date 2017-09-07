@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+let mongoose = require('mongoose');
+let bcrypt = require('bcrypt-nodejs');
 
-var behaviorSchema = mongoose.Schema({
+let behaviorSchema = mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     type: String,
     dateTime: Date,

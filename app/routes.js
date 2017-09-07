@@ -1,4 +1,5 @@
-var behaviorService = require('./service/behaviorService');
+let behaviorService = require('./service/behaviorService');
+let userService = require('./service/userService');
 
 module.exports = function(app, passport) {
 
@@ -41,17 +42,13 @@ module.exports = function(app, passport) {
         let link = req.body.link;
 
         behaviorService.addLog(username, type, dateTime, data, link);
-
         res.send(200);
     });
 
     app.get('/logout', function(req, res) {
         let user = req.user;
-        user.logoutHistory.push(Date());
-        user.save(function(err) {
-            if (err)
-                throw err;
-        });
+
+        userService.saveUser(user);
         req.logout();
         res.clearCookie('connect.useremail');
         res.redirect('/');

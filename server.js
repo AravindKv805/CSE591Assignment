@@ -1,24 +1,24 @@
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 8082;
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash = require('connect-flash');
+let express = require('express');
+let app = express();
+let port = process.env.PORT || 8082;
+let mongoose = require('mongoose');
+let passport = require('passport');
+let flash = require('connect-flash');
 
-var morgan = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
+let morgan = require('morgan');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
+let session = require('express-session');
 
-var dbConfig = require('./config/database.js');
+let dbConfig = require('./config/database.js');
 
 mongoose.connect(dbConfig.url);
-var db = mongoose.connection;
+let db = mongoose.connection;
 db.on('error', function callback(err) {
     console.log(err);
 });
 db.once('open', function callback() {
-    console.log("h");
+    console.log("Database successfully connected to " + dbConfig.url);
 });
 
 require('./config/passport')(passport);

@@ -1,6 +1,5 @@
-var LocalStrategy = require('passport-local').Strategy;
-
-var User = require('../app/models/user');
+let LocalStrategy = require('passport-local').Strategy;
+let User = require('../app/models/user');
 
 module.exports = function(passport) {
 
@@ -19,19 +18,15 @@ module.exports = function(passport) {
         passwordField: 'password',
         passReqToCallback: true
     }, function(req, username, password, done) {
-
         process.nextTick(function() {
-
             User.findOne({ 'local.username': username }, function(err, user) {
 
                 if (err)
                     return done(err);
-
                 if (user) {
                     return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
                 } else {
-
-                    var newUser = new User();
+                    let newUser = new User();
 
                     newUser.local.username = username;
                     newUser.local.password = newUser.generateHash(password);
