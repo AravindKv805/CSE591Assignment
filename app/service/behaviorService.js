@@ -253,6 +253,7 @@ function getStats(user, res) {
         if (err) {
             throw err;
         } else {
+            count--;
             let graphOneResult = formGraphValues1(userQuestionQueryResults, otherUsersQuestionQueryResults, userAnswersQueryResults, othersAnswersQueryResults, count);
             let graphTwoResult = formGraphValues2(userContributionsQueryResults, othersContributionsQueryResults, count);
             let graphThreeResult = formGraphValues3(userUsageQueryResults, othersUsageQueryResults, count);
