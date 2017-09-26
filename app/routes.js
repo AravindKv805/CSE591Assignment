@@ -1,5 +1,6 @@
 let behaviorService = require('./service/behaviorService');
 let userService = require('./service/userService');
+let async = require('async');
 
 module.exports = function(app, passport) {
 
