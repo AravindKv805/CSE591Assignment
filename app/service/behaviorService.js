@@ -92,7 +92,7 @@ function getUserAnswerBehaviors(user, res, userQuestionQueryResults, otherUsersQ
 function getOthersAnswerBehaviors(user, res, userQuestionQueryResults, otherUsersQuestionQueryResults, userAnswersQueryResults, callback) {
     let answerTags = ['copy_answer', 'upvote_answer', 'downvote_answer'];
     let othersAnswersQueryResults = {
-        copyAnswerCount: 0,
+        copyAnswersCount: 0,
         upvoteAnswersCount: 0,
         downvoteAnswersCount: 0,
         count: 0
@@ -104,7 +104,7 @@ function getOthersAnswerBehaviors(user, res, userQuestionQueryResults, otherUser
         else {
             for (let i = othersAnswersBehaviors.length - 1; i >= 0; i--) {
                 if (othersAnswersBehaviors[i].type == answerTags[0]) {
-                    othersAnswersQueryResults.copyAnswerCount++;
+                    othersAnswersQueryResults.copyAnswersCount++;
                 } else if (othersAnswersBehaviors[i].type == answerTags[1]) {
                     othersAnswersQueryResults.upvoteAnswersCount++;
                 } else if (othersAnswersBehaviors[i].type == answerTags[2]) {
