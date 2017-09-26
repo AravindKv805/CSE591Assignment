@@ -11,6 +11,8 @@ let session = require('express-session');
 
 let dbConfig = require('./config/database.js');
 
+mongoose.Promise = Promise;
+
 mongoose.connect(dbConfig.url);
 let db = mongoose.connection;
 db.on('error', function callback(err) {
@@ -36,5 +38,6 @@ app.use(flash());
 
 require('./app/routes.js')(app, passport);
 
+app.use(express.static(__dirname + '/view/res'));
 app.listen(port);
 console.log('Service is running on port: ' + port);

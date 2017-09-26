@@ -1,0 +1,314 @@
+<!doctype html>
+<html>
+<head>
+    <title>CSE 591 Adaptive Web</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            window.chartColors = {
+                red: 'rgb(255, 99, 132)',
+                orange: 'rgb(255, 159, 64)',
+                yellow: 'rgb(255, 205, 86)',
+                green: 'rgb(75, 192, 192)',
+                blue: 'rgb(54, 162, 235)',
+                purple: 'rgb(153, 102, 255)',
+                grey: 'rgb(201, 203, 207)'
+            };
+
+            var questionCanvasContext = document.getElementById("question-canvas");
+            var answerCanvasContext = document.getElementById("answer-canvas");
+            var contributionCanvasContext = document.getElementById("contribution-canvas");
+            var usageCanvasContext = document.getElementById("usage-canvas");
+            var color = Chart.helpers.color;
+
+            var g1d1 = [];
+            g1d1[0] = <%= graphOneResult.questionsGraphResult.userResults[0] %>;
+            g1d1[1] = <%= graphOneResult.questionsGraphResult.userResults[1] %>;
+            g1d1[2] = <%= graphOneResult.questionsGraphResult.userResults[2] %>;
+            g1d1[3] = <%= graphOneResult.questionsGraphResult.userResults[3] %>;
+
+            var g1d2 = [];
+            g1d2[0] = <%= graphOneResult.questionsGraphResult.othersResults[0] %>;
+            g1d2[1] = <%= graphOneResult.questionsGraphResult.othersResults[1] %>;
+            g1d2[2] = <%= graphOneResult.questionsGraphResult.othersResults[2] %>;
+            g1d2[3] = <%= graphOneResult.questionsGraphResult.othersResults[3] %>;
+
+            var g1d3 = [];
+            g1d3[0] = <%= graphOneResult.answersGraphResult.userResults[0] %>;
+            g1d3[1] = <%= graphOneResult.answersGraphResult.userResults[1] %>;
+            g1d3[2] = <%= graphOneResult.answersGraphResult.userResults[2] %>;
+
+            var g1d4 = [];
+            g1d4[0] = <%= graphOneResult.answersGraphResult.othersResults[0] %>;
+            g1d4[1] = <%= graphOneResult.answersGraphResult.othersResults[1] %>;
+            g1d4[2] = <%= graphOneResult.answersGraphResult.othersResults[2] %>;
+
+            var g2d1 = [];
+            g2d1[0] = <%= graphTwoResult.userResults[0] %>;
+            g2d1[1] = <%= graphTwoResult.userResults[1] %>;
+            g2d1[2] = <%= graphTwoResult.othersResults[0] %>;
+            g2d1[3] = <%= graphTwoResult.othersResults[1] %>;
+
+            var g3d1 = [];
+            g3d1[0] = <%= graphThreeResult.userResults[0] %>;
+            g3d1[1] = <%= graphThreeResult.userResults[1] %>;
+            g3d1[2] = <%= graphThreeResult.userResults[2] %>;
+            g3d1[3] = <%= graphThreeResult.userResults[3] %>;
+            g3d1[4] = <%= graphThreeResult.userResults[4] %>;
+
+            var g3d2 = [];
+            g3d2[0] = <%= graphThreeResult.othersResults[0] %>;
+            g3d2[1] = <%= graphThreeResult.othersResults[1] %>;
+            g3d2[2] = <%= graphThreeResult.othersResults[2] %>;
+            g3d2[3] = <%= graphThreeResult.othersResults[3] %>;
+            g3d2[4] = <%= graphThreeResult.othersResults[4] %>;
+            
+            var questionConfig = {
+                type: 'radar',
+                data: {
+                    labels: ["Approval Factor", "Disapproval Factor", "Likes Factor", "Interest Factor"],
+                    datasets: [{
+                        label: "Your data",
+                        backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+                        borderColor: window.chartColors.red,
+                        pointBackgroundColor: window.chartColors.red,
+                        data: g1d1
+                    }, {
+                        label: "Other User's data",
+                        backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
+                        borderColor: window.chartColors.blue,
+                        pointBackgroundColor: window.chartColors.blue,
+                        data: g1d2
+                    },]
+                },
+                options: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Question Posts statistics'
+                    },
+                    scale: {
+                      ticks: {
+                        beginAtZero: true
+                      }
+                    }
+                }
+            };
+
+            var answerConfig = {
+                type: 'radar',
+                data: {
+                    labels: ["Approval Factor", "Disapproval Factor", "Usefulness Factor"],
+                    datasets: [{
+                        label: "Your data",
+                        backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+                        borderColor: window.chartColors.red,
+                        pointBackgroundColor: window.chartColors.red,
+                        data: g1d3
+                    }, {
+                        label: "Other User's data",
+                        backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
+                        borderColor: window.chartColors.blue,
+                        pointBackgroundColor: window.chartColors.blue,
+                        data: g1d4
+                    },]
+                },
+                options: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Answers statistics'
+                    },
+                    scale: {
+                      ticks: {
+                        beginAtZero: true
+                      }
+                    }
+                }
+            };
+
+            var contributionConfig = {
+                type: 'polarArea',
+                data: {
+                    labels: ["User's Solution Contribution Factor", "User's Solution Value Add Factor", "Other's Solution Contribution Factor", "Other's Solution Value Add Factor"],
+                    datasets: [{
+                        label: "Your data",
+                        backgroundColor: [
+                            color(chartColors.red).alpha(0.5).rgbString(),
+                            color(chartColors.orange).alpha(0.5).rgbString(),
+                            color(chartColors.yellow).alpha(0.5).rgbString(),
+                            color(chartColors.green).alpha(0.5).rgbString(),
+                        ],
+                        borderColor: window.chartColors.red,
+                        pointBackgroundColor: window.chartColors.red,
+                        data: g2d1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Contribution statistics'
+                    },
+                    scale: {
+                      ticks: {
+                        beginAtZero: true
+                      },
+                      reverse: false
+                    },
+                    animation: {
+                        animateRotate: false,
+                        animateScale: true
+                    }
+                }
+            };
+
+            var usageConfig = {
+                type: 'bar',
+                data: {
+                    labels: [["Early morning", "00:00 to 05:59"], ["Morning", "06:00 to 10:59"], ["Noon", "11:00 to 15:59"], ["Evening", "16:00 to 19:59"], ["Night", "20:00 to 23:59"]],
+                    datasets: [{
+                        type: 'line',
+                        label: 'Average usage of other users',
+                        borderColor: window.chartColors.blue,
+                        borderWidth: 2,
+                        fill: false,
+                        data: g3d2
+                    }, {
+                        type: 'bar',
+                        label: 'Your usage',
+                        backgroundColor: window.chartColors.red,
+                        data: g3d1,
+                        borderColor: 'white',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Usage statistics'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: true
+                    }
+                }
+            };
+
+            // Chart.plugins.register({
+            //     afterDatasetsDraw: function(chart, easing) {
+            //         // To only draw at the end of animation, check for easing === 1
+            //         var ctx = chart.ctx;
+            //         chart.data.datasets.forEach(function (dataset, i) {
+            //             var meta = chart.getDatasetMeta(i);
+            //             if (!meta.hidden) {
+            //                 meta.data.forEach(function(element, index) {
+            //                     // Draw the text in black, with the specified font
+            //                     ctx.fillStyle = 'rgb(0, 0, 0)';
+            //                     var fontSize = 12;
+            //                     var fontStyle = 'normal';
+            //                     var fontFamily = 'Helvetica Neue';
+            //                     ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+            //                     // Just naively convert to string for now
+            //                     var dataString = dataset.data[index].toString();
+            //                     // Make sure alignment settings are correct
+            //                     ctx.textAlign = 'center';
+            //                     ctx.textBaseline = 'middle';
+            //                     var padding = 2;
+            //                     var position = element.tooltipPosition();
+            //                     ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+            //                 });
+            //             }
+            //         });
+            //     }
+            // });
+
+            new Chart(questionCanvasContext, questionConfig);
+            new Chart(answerCanvasContext, answerConfig);
+            new Chart(contributionCanvasContext, contributionConfig);
+            new Chart(usageCanvasContext, usageConfig);
+        });
+</script>
+    <style>
+        body {
+            word-wrap:break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="page-header text-center">
+            <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Visualization Page</h1>
+            <a href="/" class="btn btn-default btn-sm">Home</a>
+            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        </div>
+
+        <div class="row">
+            <div class="text-center">
+                <h2>Questions, Answers Statistics &amp; Inference</h2>
+            </div>
+            <div class="col-sm-6">
+                <canvas id="question-canvas" width="400" height="400"></canvas>
+            </div>
+            <div class="col-sm-6">
+                <canvas id="answer-canvas" width="400" height="400"></canvas>
+            </div>
+            <div class="col-sm-10">
+                <div class="well">
+                    <h3>Inference </h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">Click on question - To track how many questions the user has opened to see if s/he is active in the topics that s/he is interested.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="text-center">
+                <h2>User Contribution Statistics &amp; Inference</h2>
+            </div>
+            <div class="col-sm-12">
+                <canvas id="contribution-canvas" width="400" height="200"></canvas>
+            </div>
+            <div class="col-sm-12">
+                <div class="well">
+                    <h3>Inference</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">Click on question - To track how many questions the user has opened to see if s/he is active in the topics that s/he is interested.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="text-center">
+                <h2>Usage Statistics &amp; Inference</h2>
+            </div>
+            <div class="col-sm-6">
+                <canvas id="usage-canvas" width="400" height="400"></canvas>
+            </div>
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3>Inference</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">Click on question - To track how many questions the user has opened to see if s/he is active in the topics that s/he is interested.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

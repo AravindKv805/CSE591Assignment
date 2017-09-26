@@ -46,7 +46,19 @@ module.exports = function(app, passport) {
     });
 
     app.get('/behaviors', function(req, res) {
-        behaviorService.getLogs(req.user, res);
+        if (req.user == undefined || req.user == null) {
+            res.redirect('/');
+        } else {
+            behaviorService.getLogs(req.user, res);
+        }
+    });
+
+    app.get('/stats', function(req, res) {
+        if (req.user == undefined || req.user == null) {
+            res.redirect('/');
+        } else {
+            behaviorService.getStats(req.user, res);
+        }
     });
 
     app.get('/logout', function(req, res) {
