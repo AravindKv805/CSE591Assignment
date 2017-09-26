@@ -278,16 +278,16 @@ function formGraphValues1(userQuestionQueryResults, otherUsersQuestionQueryResul
     graphOneResult.questionsGraphResult.userResults[1] = Math.round(userQuestionQueryResults.downvoteQuestionsCount * 1.5);
     graphOneResult.questionsGraphResult.userResults[2] = Math.round(userQuestionQueryResults.starQuestionsCount * 1.25);
     graphOneResult.questionsGraphResult.userResults[3] = Math.round(userQuestionQueryResults.questionInterestCount * 1.75);
-    graphOneResult.questionsGraphResult.othersResults[0] = Math.round((otherUsersQuestionQueryResults.upvoteQuestionsCount * 1.5) / otherUsersQuestionQueryResults.count);
-    graphOneResult.questionsGraphResult.othersResults[1] = Math.round((otherUsersQuestionQueryResults.downvoteQuestionsCount * 1.5) / otherUsersQuestionQueryResults.count);
-    graphOneResult.questionsGraphResult.othersResults[2] = Math.round((otherUsersQuestionQueryResults.starQuestionsCount * 1.25) / otherUsersQuestionQueryResults.count);
+    graphOneResult.questionsGraphResult.othersResults[0] = Math.round(otherUsersQuestionQueryResults.upvoteQuestionsCount * 1.5);
+    graphOneResult.questionsGraphResult.othersResults[1] = Math.round(otherUsersQuestionQueryResults.downvoteQuestionsCount * 1.5);
+    graphOneResult.questionsGraphResult.othersResults[2] = Math.round(otherUsersQuestionQueryResults.starQuestionsCount * 1.25);
     graphOneResult.questionsGraphResult.othersResults[3] = Math.round(otherUsersQuestionQueryResults.questionInterestCount * 1.75);
     graphOneResult.answersGraphResult.userResults[0] = Math.round(userAnswersQueryResults.upvoteAnswersCount * 1.5);
     graphOneResult.answersGraphResult.userResults[1] = Math.round(userAnswersQueryResults.downvoteAnswersCount * 1.5);
     graphOneResult.answersGraphResult.userResults[2] = Math.round(userAnswersQueryResults.copyAnswersCount * 1.25);
-    graphOneResult.answersGraphResult.othersResults[0] = Math.round((othersAnswersQueryResults.upvoteAnswersCount * 1.5) / othersAnswersQueryResults.count);
-    graphOneResult.answersGraphResult.othersResults[1] = Math.round((othersAnswersQueryResults.downvoteAnswersCount * 1.5) / othersAnswersQueryResults.count);
-    graphOneResult.answersGraphResult.othersResults[2] = Math.round((othersAnswersQueryResults.copyAnswersCount * 1.25) / othersAnswersQueryResults.count);
+    graphOneResult.answersGraphResult.othersResults[0] = Math.round(othersAnswersQueryResults.upvoteAnswersCount * 1.5);
+    graphOneResult.answersGraphResult.othersResults[1] = Math.round(othersAnswersQueryResults.downvoteAnswersCount * 1.5);
+    graphOneResult.answersGraphResult.othersResults[2] = Math.round(othersAnswersQueryResults.copyAnswersCount * 1.25);
 
     return graphOneResult;
 }
@@ -300,8 +300,8 @@ function formGraphValues2(userContributionsQueryResults, othersContributionsQuer
 
     graphTwoResult.userResults[0] = Math.round(userContributionsQueryResults.addAnswerCount * 2.5);
     graphTwoResult.userResults[1] = Math.round(userContributionsQueryResults.addCommentCount * 1.5);
-    graphTwoResult.othersResults[0] = Math.round((othersContributionsQueryResults.addAnswerCount * 2.5) / othersContributionsQueryResults.count);
-    graphTwoResult.othersResults[1] = Math.round((othersContributionsQueryResults.addCommentCount * 1.5) / othersContributionsQueryResults.count);
+    graphTwoResult.othersResults[0] = Math.round(othersContributionsQueryResults.addAnswerCount * 2.5);
+    graphTwoResult.othersResults[1] = Math.round(othersContributionsQueryResults.addCommentCount * 1.5);
 
     return graphTwoResult;
 }
@@ -318,11 +318,11 @@ function formGraphValues3(userUsageQueryResults, othersUsageQueryResults) {
     graphThreeResult.userResults[3] = Math.round(userUsageQueryResults.evening * 1.5);
     graphThreeResult.userResults[4] = Math.round(userUsageQueryResults.night * 1.5);
 
-    graphThreeResult.othersResults[0] = Math.round((othersUsageQueryResults.earlyMorning * 1.5) / othersUsageQueryResults.count);
-    graphThreeResult.othersResults[1] = Math.round((othersUsageQueryResults.morning * 1.5) / othersUsageQueryResults.count);
-    graphThreeResult.othersResults[2] = Math.round((othersUsageQueryResults.noon * 1.5) / othersUsageQueryResults.count);
-    graphThreeResult.othersResults[3] = Math.round((othersUsageQueryResults.evening * 1.5) / othersUsageQueryResults.count);
-    graphThreeResult.othersResults[4] = Math.round((othersUsageQueryResults.night * 1.5) / othersUsageQueryResults.count);
+    graphThreeResult.othersResults[0] = Math.round(othersUsageQueryResults.earlyMorning * 1.5);
+    graphThreeResult.othersResults[1] = Math.round(othersUsageQueryResults.morning * 1.5);
+    graphThreeResult.othersResults[2] = Math.round(othersUsageQueryResults.noon * 1.5);
+    graphThreeResult.othersResults[3] = Math.round(othersUsageQueryResults.evening * 1.5);
+    graphThreeResult.othersResults[4] = Math.round(othersUsageQueryResults.night * 1.5);
 
     return graphThreeResult;
 }
