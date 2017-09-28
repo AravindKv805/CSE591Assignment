@@ -240,9 +240,21 @@
             </div>
             <div class="col-sm-10">
                 <div class="well">
+                    <h3>About the data </h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">The questions data is calculated based on the numbers of questions the user has visited, liked, interested, etc. The answer date is calculated including the liked and copies answers. All the collected values are factored to give importance to some data and ignoring the others.</li>
+                    </ul>
+
+                    <h3>Pattern Findings </h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">If the interest factor is high, then the user must have opened and researched a lot of questions in the StackOverflow website.</li>
+                        <li class="list-group-item">A high approval factor means the suer approves the quality of question and therefore this value can be used to analyze the knowledge level of the user.</li>
+                        <li class="list-group-item">If the usefulness factor of the answers is high, it means the user has manually copied the answer text which he would have been using as his solution.</li>
+                    </ul>
+
                     <h3>Inference </h3>
                     <ul class="list-group">
-                        <li class="list-group-item">Click on question - To track how many questions the user has opened to see if s/he is active in the topics that s/he is interested.</li>
+                        <li class="list-group-item">Based on the pattern findings, we can analyze the user's interests in spending time on the StackOverflow website and track his areas of interests and pages he has visited previously. Based on this data, we can judge the level of the user (beginner to expert) and sort posts based on this.</li>
                     </ul>
                 </div>
             </div>
@@ -253,13 +265,24 @@
                 <h2>User Contribution Statistics &amp; Inference</h2>
             </div>
             <div class="col-sm-12">
-                <canvas id="contribution-canvas" width="400" height="200"></canvas>
+                <canvas id="contribution-canvas"></canvas>
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-10">
                 <div class="well">
-                    <h3>Inference</h3>
+                    <h3>About the data </h3>
                     <ul class="list-group">
-                        <li class="list-group-item">Click on question - To track how many questions the user has opened to see if s/he is active in the topics that s/he is interested.</li>
+                        <li class="list-group-item">There are two kinds of contribution for a post that a user can give and that metrics are captured from the user. The user can either add a new answer to a question/post of improve an already existing answer.</li>
+                    </ul>
+
+                    <h3>Pattern Findings </h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">If the user's contribution factor is high, it means the user has a lot more interest and knowledge in giving answers to posts in StackOverflow.</li>
+                        <li class="list-group-item">If the user's value-add factor is high, it means the user has can improve already existing answers.</li>
+                    </ul>
+
+                    <h3>Inference </h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">Based on the factorized values, we can present user's with either unanswered questions or answers whose ratings are very less so that it can be improved.</li>
                     </ul>
                 </div>
             </div>
@@ -272,11 +295,21 @@
             <div class="col-sm-6">
                 <canvas id="usage-canvas" width="400" height="400"></canvas>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-10">
                 <div class="well">
-                    <h3>Inference</h3>
+                    <h3>About the data </h3>
                     <ul class="list-group">
-                        <li class="list-group-item">Click on question - To track how many questions the user has opened to see if s/he is active in the topics that s/he is interested.</li>
+                        <li class="list-group-item">This data is collected based on all the logs registered by the user. The data is filtered into different time zones of a day.</li>
+                    </ul>
+
+                    <h3>Pattern Findings </h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">If the user logs a lot of behavior during the morning and noon times, it can be assumed that it is during his working hours, either as a student or an employee. If it's a lot during the night time, s/he can either be a student or someone working night shifts.</li>
+                    </ul>
+
+                    <h3>Inference </h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">Based on the calculated data, we can show the user new posts or even advertisements at the appropriate hour of his usage.</li>
                     </ul>
                 </div>
             </div>
